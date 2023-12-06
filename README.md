@@ -7,8 +7,9 @@ Luajit 2
 ## usage
 Create your own zipped or tar/gzipped archive from any lua (and data) files. The compressed archive can contain subdirectories as well.
 
-. for zip compressed files use the **.zip** or **.lar** extensions
-. for gzipped tar files you can use the **.tgz** or **.tar.gz** or the **.largz** extensions.
+- for zip compressed files use the **.zip** or **.lar** extensions
+
+- for gzipped tar files you can use the **.tgz** or **.tar.gz** or the **.largz** extensions.
 
 
 ### examples
