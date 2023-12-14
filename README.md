@@ -3,6 +3,7 @@ Allows loading lua modules from a compressed file (zip, tgz)
 
 ## lua version supported
 Luajit 2
+Lua5.3 or higher 
 
 ## usage
 Create your own zipped or tar/gzipped archive from any lua (and data) files. The compressed archive can contain subdirectories as well.
