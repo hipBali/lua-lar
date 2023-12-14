@@ -2,7 +2,7 @@
 Allows loading lua modules from a compressed file (zip, tgz)
 
 ## lua version supported
-Luajit 2
+Luajit2, 
 Lua5.3 or higher 
 
 ## usage
