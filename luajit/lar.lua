@@ -31,6 +31,8 @@ end
 -- ZZLIB
 --
 -- **************************************************
+local unpack = table.unpack or unpack
+local loadstring = loadstring or load
 
 local function inflate_bitstream_init(file)
   local bs = {
@@ -302,6 +304,7 @@ local function arraytostr(array)
   return str
 end
 
+local crc32_table
 function inflate_crc32(s,crc)
   if not crc32_table then
     crc32_table = {}
@@ -693,39 +696,22 @@ end
 -- lar package loader  --
 -------------------------
 
-local registered_tgz = {}
-local registered_zip = {}
-
 local function search_archive(path,name)
 	local err = ""
 	-- search in zip files
-	if #registered_zip then
-		for _,reg_p in pairs(registered_zip) do
-			local mod = zip_load(reg_p,name)
-			if mod then return mod end
-		end
-	end
 	for _,ext in pairs(luar_zip_filetypes) do
 		local s = string.format("%s.%s",path,ext)
 		local mod = zip_load(s,name)
 		if mod then
-			table.insert(registered_zip,s)
 			return mod
 		end
 		err =  err.."\n\tno file '"..s..LUA_DIRSEP..name
 	end
 	-- search in tar files
-	if #registered_tgz then
-		for _,reg_p in pairs(registered_tgz) do
-			local mod = tgz_load(reg_p,name)
-			if mod then return mod end
-		end
-	end
 	for _,ext in pairs(luar_tar_filetypes) do
 		local s = string.format("%s.%s",path,ext)
 		local mod = tgz_load(s,name)
 		if mod then
-			table.insert(registered_tgz,s)
 			return mod
 		end
 		err =  err.."\n\tno file '"..s..LUA_DIRSEP..name
